@@ -22,8 +22,21 @@
     function statusChangeCallback(response) {
         console.log('statusChangeCallback');
         console.log(response);
+        // localStorage.setItem("accessToken", response.authResponse.accessToken)
         
         if (response.status === 'connected') {
+            localStorage.setItem("accessToken", response.authResponse.accessToken)
+           axios.post('http://localhost:3000/loginfb', {
+                headers: {
+                    fbaccessToken : localStorage.accessToken
+                }               
+            })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             // Logged into your app and Facebook.
             testAPI();
         } else {
@@ -73,5 +86,7 @@
             $("#connection").append(`<img src="${response.picture.data.url}" >`)
         });
     }
+
 </script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </html>
