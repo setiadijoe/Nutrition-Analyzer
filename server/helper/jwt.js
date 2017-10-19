@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const salt = bcrypt.genSalt(10)
-const hash = bcrypt.hashSync("B4c)/\/", salt)
+var bcrypt = require('bcryptjs');
+var salt = bcrypt.genSaltSync(10);
+var hash = bcrypt.hashSync("B4c0/\/", salt);
 require('dotenv').config()
 
 let hashLogin = (req,res, next)=>{

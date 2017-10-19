@@ -1,6 +1,7 @@
-const dbUser = require('../models/user');
+const modelUser = require('../models/user');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
 
 let register = (req,res)=>{
   let salt = bcrypt.genSaltSync(10);
@@ -18,15 +19,48 @@ let register = (req,res)=>{
   })
 }
 
-// const login = (req,res)=> {
-//   modelUser.findOne({
-//     username: req.body.username
-//   })
-//   .then(result =>{
-//
-//   })
-// }
+const login = (req,res)=> {
+  modelUser.findOne({
+    username: req.body.username
+  })
+  .then(result =>{
+    console.log('masuk');
+    if(result == null){
+      res.send('invalid username')
+    } else {
+      if(bcrypt.compareSync(req.body.password, result.password)) {
+        let token = jwt.sign({
+          _id:result._id,
+          username: result.username,
+          email: result.email
+        },process.env.KEY)
+        res.send(token)
+      } else {
+        res.send('invalid password')
+      }
+    }
+  })
+  .catch(err =>{
+    res.send(err)
+  })
+}
+
+let all = (req,res)=>{
+  modelUser.find({}, function(err, result){
+    if(!err){
+      res.send(result)
+    } else {
+      res.send(err)
+    }
+  })
+}
+
+
+
 
 module.exports = {
-  register
+  register,
+  login,
+  all
+
 };
