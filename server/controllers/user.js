@@ -55,9 +55,6 @@ let all = (req,res)=>{
   })
 }
 
-
-
-
 module.exports = {
   register,
   login,
