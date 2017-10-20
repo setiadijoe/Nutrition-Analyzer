@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style src="style.css"></style>
+    <link src="style.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <title>Document</title>
 </head>
@@ -43,6 +43,7 @@
             testAPI();
         } else {
             // The person is not logged into your app or we are unable to tell.
+            localStorage.clear()
             document.getElementById('status').innerHTML = 'Please log ' +
                 'into this app.';
         }

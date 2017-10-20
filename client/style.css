@@ -1,3 +1,8 @@
+* {
+    background-color: aqua;
+    font-family: "Helvetica", "Times";
+}
+
 h1 {
     font-size: 40px;
 }
