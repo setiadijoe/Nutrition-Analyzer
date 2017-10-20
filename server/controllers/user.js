@@ -26,7 +26,7 @@ const login = (req,res)=> {
   .then(result =>{
     console.log('masuk');
     if(result == null){
-      res.send('invalid username')
+      res.send({msg:'username not found'})
     } else {
       if(bcrypt.compareSync(req.body.password, result.password)) {
         let token = jwt.sign({
@@ -34,14 +34,14 @@ const login = (req,res)=> {
           username: result.username,
           email: result.email
         },process.env.KEY)
-        res.send(token)
+        res.send({ token: token, msg:"login success"})
       } else {
-        res.send('invalid password')
+        res.send({msg:'password incorrect'})
       }
     }
   })
   .catch(err =>{
-    res.send(err)
+    res.send({msg:'username not found'})
   })
 }
 
