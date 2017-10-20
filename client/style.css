@@ -1,0 +1,37 @@
+* {
+    background-color: aqua;
+    font-family: "Helvetica", "Times";
+}
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+p {
+    font-size: 14px;
+    color: blue
+}
+
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+@media screen and (max-width: 767px) {
+    .sidenav {
+    height: auto;
+    padding: 15px;
+    }
+    .row.content {height:auto;} 
+}
