@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title>Login</title>
+  </head>
+  <body>
+    <form id="register-form">
+      Username : <br>
+      <input type="text" name="username"> <br>
+      Password : <br>
+      <input type="password" name="password"> <br>
+      Email : <br>
+      <input type="email" name="email"> <br>
+      <button type="submit" name="submit">Submit</button>
+    </form>
+  </body>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#register-form').on('submit', function(e){
+        e.preventDefault()
+        $.ajax({
+          method: 'post',
+          url: 'http://localhost:3000/user/register',
+          data: {
+            username: $('#register-form').find('input[name="username"]').val(),
+            password: $('#register-form').find('input[name="password"]').val(),
+            email: $('#register-form').find('input[name="email"]').val()
+          }
+        })
+        .done(function(data){
+          console.log(data);
+          // document.location.href = "login.html"
+        })
+      })
+    })
+  </script>
+
+</html>
