@@ -11,9 +11,9 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 app.use(cors());
 
-var users = require('./routes/users');
+var users = require('./routes/user');
 
-app.use('/users', users);
+app.use('/user', users);
 
 
 app.listen(3000, ()=>{
